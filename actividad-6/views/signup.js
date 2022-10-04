@@ -31,8 +31,13 @@ function Signup() {
   const db = getFirestore(app);
 
   const handleSignUp = async () => {
-    if (password !== confirmPassword)
+    if (username === "") {
+      return Alert.alert("Llenar todos los campos es obligatorio");
+    } else if (email === "") {
+      return Alert.alert("Llenar todos los campos es obligatorio");
+    } else if (password !== confirmPassword) {
       return Alert.alert("Las contraseñas no coinciden");
+    }
 
     createUserWithEmailAndPassword(auth, email, password)
       .then((usr) => {
